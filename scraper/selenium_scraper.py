@@ -1,13 +1,14 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 import time
 import pandas as pd
 
 def scrape_dakar_auto(url,type_object,max_pages = 5):
     options = webdriver.ChromeOptions() 
-    options.add_argument("--headless=new") 
-    driver = webdriver.Chrome(options=options)
+    options.add_argument("--headless") 
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
     data = []
     
